@@ -1,0 +1,32 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.bigAnchor  {
+    
+    -fx-background-color: black;
+    -fx-background-image: url("stars.jpeg");
+}
+
+.lilAnchor  {
+    
+    
+}
+
+
+.button  {
+    
+   
+    
+    
+}
+
+.text  {
+    
+    
+}
+
+.topBox  {
+    
+    -fx-background-image: url("cloud.jpg");
+}
