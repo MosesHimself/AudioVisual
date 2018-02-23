@@ -21,7 +21,7 @@ import javafx.scene.transform.Rotate;
  */
 public class Hmkwp5MegaViz implements Visualizer{
     
-    private final String name = "Hmkwp5MegaVizFamGod";
+    private final String name = "MegaVizFamGod";
     
     private static int growFlip = 1;
     
@@ -66,13 +66,13 @@ public class Hmkwp5MegaViz implements Visualizer{
         clip.setLayoutX(0);
         clip.setLayoutY(0);
         vizPane.setClip(clip);
-        
+        /*
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
         dropShadow.setOffsetY(3.0);
         dropShadow.setColor(Color.color(0.4, 0.5, 0.5));
-        
+        */
         //shapeWidth = width/numShapes;
         shapeWidth = 40;
         shapeHeight = 360/numShapes;
@@ -90,7 +90,7 @@ public class Hmkwp5MegaViz implements Visualizer{
             shapes[i].setWidth(shapeWidth);
             shapes[i].setArcWidth(10.0);
             shapes[i].setArcHeight(10.0);
-            shapes[i].setEffect(dropShadow);
+            //shapes[i].setEffect(dropShadow);
            
             shapes[i].setFill(Color.hsb(hueStart, 1.0, 1.0, 1.0));
             
@@ -135,9 +135,9 @@ public class Hmkwp5MegaViz implements Visualizer{
         }
         
         //every 150 frames, flip the direction of the circle grow
-        if(timer % 150 == 0)  {
+        if(timer % 130 == 0)  {
             growFlip *= -1;
-            System.out.println("ayy");
+            //System.out.println("ayy");
         }
 
         radiusMultiplier += (double)(2 * growFlip);
@@ -155,31 +155,31 @@ public class Hmkwp5MegaViz implements Visualizer{
                 double input = ((x/numShapes) * 2 * Math.PI);
                 double rotate = input * (180 / Math.PI);
 
-                shapes[i].setHeight( ((60.0 + magnitudes[i])/60.0) * 300 + 40);
-                shapes[i].setWidth( ((60.0 + magnitudes[i])/60.0) * 300 + 40);
+                shapes[i].setHeight( ((60.0 + magnitudes[i])/60.0) * 250 + 40);
+                shapes[i].setWidth( ((60.0 + magnitudes[i])/60.0) * 200 + 40);
                 shapes[i].setFill(Color.hsb(hueStart - (magnitudes[i] * -6.0), 1.0, 1.0, 1.0));
                 shapes[i].setRotate(rotate * 2 * Math.PI);               
                 
-                if(growFlip > 0)  {
-                    shapes[i].setX((radiusMultiplier * Math.cos(1 * input) + (width/2)));
-                    shapes[i].setY((radiusMultiplier * Math.sin(2 * input) + (height/2)));
-                }
-                else  {
-                    shapes[i].setX((radiusMultiplier * Math.cos(3 * input) + (width/2)));
-                    shapes[i].setY((radiusMultiplier * Math.sin(2 * input) + (height/2)));
-                }
+                //if(growFlip > 0)  {
+                //    shapes[i].setY((radiusMultiplier * Math.cos(1 * input) + (height/2)));
+                //    shapes[i].setX((radiusMultiplier * Math.sin(2 * input) + (width/2)));
+                //}
+                //else  {
+                    shapes[i].setY((radiusMultiplier * Math.cos(3 * input) + (height/2)));
+                    shapes[i].setX((radiusMultiplier * Math.sin(2 * input) + (width/2)));
+                //}
         }
         
         Double hue = ((60.0 + magnitudes[0])/60.0) * 360;
         hue = Math.floor(hue);
         
         //this makes the background go purple when bass hits
-        vizPane.setStyle("-fx-background-color: hsb(" + hue + ", 75%, " + hue + "%)" );
+        //vizPane.setStyle("-fx-background-color: hsb(" + hue + ", 75%, " + hue + "%)" );
         
         
         
         //this makes the background go purple when bass hits
-        menu.setStyle("-fx-background-color: hsb(" + hue + ", 75%, " + hue + "%)" );
+        //menu.setStyle("-fx-background-color: hsb(" + hue + ", 75%, " + hue + "%)" );
         
     }
     

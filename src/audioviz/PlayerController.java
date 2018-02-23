@@ -97,10 +97,11 @@ public class PlayerController implements Initializable {
         visualizers.add(new CodieneViz());
         visualizers.add(new Vector80sViz());
         visualizers.add(new SphereViz());
-
-
+        visualizers.add(new MirrorViz());
 
         
+
+        //load each viz as a menu item
         for (Visualizer visualizer : visualizers) {
             MenuItem menuItem = new MenuItem(visualizer.getName());
             menuItem.setUserData(visualizer);
