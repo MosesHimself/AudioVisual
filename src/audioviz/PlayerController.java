@@ -8,11 +8,16 @@ package audioviz;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -36,8 +41,15 @@ import javafx.util.Duration;
  */
 public class PlayerController implements Initializable {
     
+    
+    private Stage stage;
+    private Scene scene;
+    
     @FXML
     private AnchorPane vizPane;
+    
+    @FXML
+    private AnchorPane menuPane;
     
     @FXML
     private MediaView mediaView;
@@ -82,22 +94,27 @@ public class PlayerController implements Initializable {
     private Visualizer currentVisualizer;
     private final Integer[] bandsList = {1, 2, 4, 8, 16, 20, 40, 60, 100, 120, 140};
     
+    double vizH, vizW;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         bandsText.setText(Integer.toString(numBands));
         
         visualizers = new ArrayList<>();
-        visualizers.add(new EllipseVisualizer1());
-        visualizers.add(new EllipseVisualizer2());
-        visualizers.add(new EllipseVisualizer3());
         
-        visualizers.add(new Hmkwp5MegaViz());
+        //visualizers.add(new EllipseVisualizer2());
+        //visualizers.add(new EllipseVisualizer3());
+        
         visualizers.add(new UltiViz());
         visualizers.add(new Viz3D());
         visualizers.add(new CodieneViz());
         visualizers.add(new Vector80sViz());
         visualizers.add(new SphereViz());
         visualizers.add(new MirrorViz());
+        visualizers.add(new EllipseVisualizer1());
+        visualizers.add(new EllipseVisualizer2());
+        visualizers.add(new EllipseVisualizer3());
+        visualizers.add(new Hmkwp5MegaViz());
 
         
 
@@ -111,6 +128,8 @@ public class PlayerController implements Initializable {
             visualizersMenu.getItems().add(menuItem);
         }
         currentVisualizer = visualizers.get(0);
+        
+        
         visualizerNameText.setText(currentVisualizer.getName());
         
         for (Integer bands : bandsList) {
@@ -121,6 +140,54 @@ public class PlayerController implements Initializable {
             });
             bandsMenu.getItems().add(menuItem);
         }
+    }
+    
+    public void ready(Stage stage, Scene scene) {
+        this.stage = stage;
+        this.scene = scene;
+        
+        ChangeListener<Number> listener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+            
+            if (currentVisualizer != null) {
+                currentVisualizer.end();
+                this.vizPane.getChildren().clear();
+                System.out.println("ended");
+            }
+            
+            renderScreen();
+        };
+        
+        scene.widthProperty().addListener(listener);
+        scene.heightProperty().addListener(listener);
+        
+        renderScreen();
+    }
+    
+    private void renderScreen()  {
+        
+        //this.vizPane = new AnchorPane();
+        this.vizPane.setStyle("fx-background-color: red;");
+        double width = scene.getWidth();
+        System.out.println(width);
+        double height = scene.getHeight() - this.menu.getHeight();
+        
+        double vizY = this.menuPane.getHeight() + this.menuPane.getLayoutY();
+        double vizX = 5;
+        this.vizPane.setLayoutX(vizX);
+        this.vizPane.setLayoutY(vizY);
+        
+        this.vizH = height - (this.vizPane.getLayoutY());
+        this.vizW = width - 10;
+        this.vizPane.setPrefSize(vizW, vizH);
+        this.vizPane.setMaxSize(vizW, vizH);
+        
+        changeVisualizer(this.currentVisualizer);
+        
+        //this.menuPane.setPrefSize(menuW, menuH);
+        double menuY = 30;
+        double menuX = (width * 0.5) - (this.menuPane.getWidth() * 0.5);
+        this.menuPane.setLayoutX(menuX);
+        this.menuPane.setLayoutY(menuY);
     }
     
     private void selectVisualizer(ActionEvent event) {

@@ -28,8 +28,8 @@ public class SphereViz implements Visualizer{
     private final Double bandHeightPercentage = 1.0;
     private final Double minRectHeight = 10.0;  // 10.0
     
-    private Double height = 630.0;
-    private Double width = 1400.0;
+    private Double height;
+    private Double width;
     
     private MenuBar menu;
     
@@ -52,15 +52,17 @@ public class SphereViz implements Visualizer{
         this.numBands = numBands;
         this.vizPane = vizPane;
         this.menu = menu;
+        
+        
+        height = vizPane.getHeight();
+        width = vizPane.getWidth();
+        
         Rectangle clip = new Rectangle(width, height);
         clip.setLayoutX(0);
         clip.setLayoutY(0);
         vizPane.setClip(clip);
         
-        /*
-        height = vizPane.getHeight();
-        width = vizPane.getWidth();
-        */
+        
         offset = 0;
         bandWidth = width / numBands;
         bandHeight = height * bandHeightPercentage;
@@ -115,7 +117,7 @@ public class SphereViz implements Visualizer{
         Integer num = min(spheres.length, magnitudes.length);
         
         for (int i = 0; i < num; i++) {
-            spheres[i].setRadius(bandWidth / 2);
+            spheres[i].setRadius(bandWidth / 2 );
             PhongMaterial material = new PhongMaterial();
             
             material.setDiffuseColor(Color.hsb(startHue - (magnitudes[i] * -6.0), 1.0, 1.0, 1.0));

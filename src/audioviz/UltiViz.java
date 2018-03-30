@@ -24,8 +24,8 @@ public class UltiViz  implements Visualizer{
     private Integer numShapes;
     private AnchorPane vizPane;
     
-    private final Double height = 630.0;
-    private final Double width = 1400.0;
+    private double height;
+    private double width;
     
     private int shapeHeight, shapeWidth;
         
@@ -52,6 +52,9 @@ public class UltiViz  implements Visualizer{
         this.vizPane = vizPane;
         this.menu = menu;
         
+        this.height = vizPane.getHeight();
+        this.width = vizPane.getWidth();
+        
         Rectangle clip = new Rectangle(width, height);
         clip.setLayoutX(0);
         clip.setLayoutY(0);
@@ -74,7 +77,7 @@ public class UltiViz  implements Visualizer{
             shapes[i].setArcWidth(10.0);
             shapes[i].setArcHeight(10.0);
             
-            shapes[i].setEffect(new Glow(1));
+            //shapes[i].setEffect(new Glow(1));
             
             //shapes[i].getStyleClass().add("my-rect"); 
             
@@ -152,22 +155,23 @@ public class UltiViz  implements Visualizer{
                 double rotate = input * (180 / Math.PI);
             
             
-                shapes[i].setX((150 * Math.cos(input) + (width/2)) - (shapes[i].getWidth()/2));
+                //shapes[i].setX((150 * Math.cos(input) + (width/2)) - (shapes[i].getWidth()/2));
                 
                 
                 //shapes[i].setRotate(rotate + 270);
                 //shapes[i].setRotationAxis(new Point3D(0, 0, 0));
                 
-                //shapes[i].setHeight( ((60.0 + magnitudes[i])/60.0) * 300 + 30);
-                shapes[i].setWidth( ((60.0 + magnitudes[i])/60.0) * 300 + 20);
+                shapes[i].setHeight( ((60.0 + magnitudes[i])/60.0) * 50 + 5);
+                shapes[i].setWidth( ((60.0 + magnitudes[i])/60.0) * 150 + 20);
                 shapes[i].setFill(Color.hsb(hueStart - (magnitudes[i] * -6.0), 1.0, 1.0, 1.0));
                 shapes[i].setRotate(rotate);
                 
                 
                 
-                  
-                shapes[i].setX((230 * Math.cos(3 * input) + (width/2)));
-                shapes[i].setY((230 * Math.sin(2 * input) + (height/2)));
+                double radius = (((60.0 + magnitudes[1])/60.0) * 50) + 200;
+                //System.out.println(radius);
+                shapes[i].setX((radius * Math.cos(3 * input) + (width/2)));
+                shapes[i].setY((radius * Math.sin(2 * input) + (height/2)));
                 
                 
                 

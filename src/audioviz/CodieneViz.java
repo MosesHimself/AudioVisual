@@ -27,8 +27,8 @@ public class CodieneViz implements Visualizer{
     private final Double bandHeightPercentage = 1.0;
     private final Double minEllipseRadius = 10.0;  // 10.0
     
-    private Double height = 630.0;
-    private Double width = 1458.0;
+    private Double height;
+    private Double width;
     
     private Double bandWidth = 0.0;
     private Double bandHeight = 0.0;
@@ -56,10 +56,10 @@ public class CodieneViz implements Visualizer{
         this.numBands = numBands;
         this.vizPane = vizPane;
         this.menu = menu;
-        /*
+        
         height = vizPane.getHeight();
         width = vizPane.getWidth();
-        */
+        
         bandWidth = width / numBands;
         bandHeight = height * bandHeightPercentage;
         halfBandHeight = bandHeight / 2;

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="830.0" maxWidth="1301.0" prefHeight="830.0" prefWidth="1301.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="audioviz.PlayerController">
+<VBox xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="audioviz.PlayerController">
    <children>
       <MenuBar fx:id="menu" style="-fx-background-color: a371ad;">
         <menus>
@@ -31,14 +31,14 @@
             <Menu fx:id="bandsMenu" mnemonicParsing="false" text="Bands" />
         </menus>
       </MenuBar>
-      <AnchorPane id="AnchorPane" maxHeight="801.0" maxWidth="1001.0" prefHeight="801.0" prefWidth="1001.0" styleClass="bigAnchor">
+      <AnchorPane id="AnchorPane" prefHeight="801.0" prefWidth="1001.0" styleClass="bigAnchor">
           <stylesheets>
               <URL value="@player.css" />
           </stylesheets>
          <children>
-            <AnchorPane fx:id="vizPane" layoutX="28.0" layoutY="157.0" maxHeight="630.0" maxWidth="1458.0" prefHeight="630.0" prefWidth="1458.0" styleClass="lilAnchor" stylesheets="@player.css" />
+            <AnchorPane fx:id="vizPane" styleClass="lilAnchor" stylesheets="@player.css" />
             <Text fx:id="errorText" fill="RED" layoutX="25.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" />
-            <AnchorPane layoutX="337.0" layoutY="22.0" prefHeight="140.0" prefWidth="831.0" style="-fx-border-width: 7; -fx-border-color: #244c61; -fx-background-radius: 39; -fx-border-radius: 35;" styleClass="topBox" stylesheets="@player.css">
+            <AnchorPane fx:id="menuPane" layoutX="337.0" layoutY="15.0" prefHeight="140.0" prefWidth="831.0" style="-fx-border-width: 7; -fx-border-color: #244c61; -fx-background-radius: 39; -fx-border-radius: 35;" styleClass="topBox" stylesheets="@player.css">
                <children>
                   <Button layoutX="233.0" layoutY="88.0" mnemonicParsing="false" onAction="#handlePlay" style="-fx-background-color: #4e609c;" stylesheets="@player.css" text="Play" textFill="#498c5c">
                      <font>
@@ -64,12 +64,12 @@
                         <InnerShadow />
                      </effect>
                   </Button>
-                  <Label layoutX="43.0" layoutY="8.0" prefHeight="26.0" prefWidth="68.0" styleClass="text" stylesheets="@player.css" text="Length:" textFill="#4e609c">
+                  <Label layoutX="27.0" layoutY="8.0" prefHeight="26.0" prefWidth="68.0" styleClass="text" stylesheets="@player.css" text="Length:" textFill="#4e609c">
                      <font>
                         <Font name="Weibei TC Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="41.0" layoutY="31.0" prefHeight="26.0" prefWidth="68.0" styleClass="text" stylesheets="@player.css" text="Current:" textFill="#8c3565">
+                  <Label layoutX="25.0" layoutY="31.0" prefHeight="26.0" prefWidth="84.0" styleClass="text" stylesheets="@player.css" text="Current:" textFill="#8c3565">
                      <font>
                         <Font name="Weibei TC Bold" size="18.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Font name="Weibei TC Bold" size="19.0" />
                      </font>
                   </Text>
-                  <Text fx:id="filePathText" fill="#ffad14" layoutX="43.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="768.500005543232">
+                  <Text fx:id="filePathText" fill="#ffad14" layoutX="13.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="806.4098566174507">
                      <font>
                         <Font name="Weibei TC Bold" size="18.0" />
                      </font>
@@ -120,7 +120,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="1025.0" layoutY="33.0" />
+            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="1232.0" layoutY="37.0" />
          </children>
       </AnchorPane>
    </children>

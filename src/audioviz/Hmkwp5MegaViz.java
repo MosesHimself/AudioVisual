@@ -31,8 +31,8 @@ public class Hmkwp5MegaViz implements Visualizer{
     private Integer numShapes;
     private AnchorPane vizPane;
     
-    private final Double height = 630.0;
-    private final Double width = 1400.0;
+    private double height;
+    private double width;
     
     private int shapeHeight, shapeWidth;
         
@@ -56,10 +56,10 @@ public class Hmkwp5MegaViz implements Visualizer{
         this.vizPane = vizPane;
         this.menu = menu;
         
-        /*
+        
         height = vizPane.getHeight();
         width = vizPane.getWidth();
-        */
+        
         radiusMultiplier = 150.0;
         
         Rectangle clip = new Rectangle(width, height);

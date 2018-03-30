@@ -29,8 +29,8 @@ public class EllipseVisualizer3 implements Visualizer {
     private final Double minEllipseRadius = 10.0;  // 10.0
     private final Double rotatePhaseMultiplier = 300.0;
     
-    private Double height = 630.0;
-    private Double width = 1400.0;
+    private double height;
+    private double width;
     
     private Double bandWidth = 0.0;
     private Double bandHeight = 0.0;
@@ -56,10 +56,10 @@ public class EllipseVisualizer3 implements Visualizer {
         
         this.numBands = numBands;
         this.vizPane = vizPane;
-        /*
+        
         height = vizPane.getHeight();
         width = vizPane.getWidth();
-        */
+        
         Rectangle clip = new Rectangle(width, height);
         clip.setLayoutX(0);
         clip.setLayoutY(0);

@@ -25,8 +25,8 @@ public class EllipseVisualizer1 implements Visualizer {
     private final Double bandHeightPercentage = 1.0;
     private final Double minEllipseRadius = 10.0;  // 10.0
     
-    private Double height = 630.0;
-    private Double width = 1400.0;
+    double height;
+    double width;
     
     private Double bandWidth = 0.0;
     private Double bandHeight = 0.0;
@@ -53,10 +53,11 @@ public class EllipseVisualizer1 implements Visualizer {
         this.numBands = numBands;
         this.vizPane = vizPane;
         this.menu = menu;
-        /*
-        height = vizPane.getHeight();
-        width = vizPane.getWidth();
-        */
+        
+        this.height = vizPane.getHeight();
+        this.width = vizPane.getWidth();
+        
+        System.out.println(width);
         bandWidth = width / numBands;
         bandHeight = height * bandHeightPercentage;
         halfBandHeight = bandHeight / 2;
@@ -82,6 +83,7 @@ public class EllipseVisualizer1 implements Visualizer {
                  vizPane.getChildren().remove(ellipse);
              }
             ellipses = null;
+            
         } 
     }
     
@@ -97,8 +99,7 @@ public class EllipseVisualizer1 implements Visualizer {
             ellipses[i].setRadiusY( ((60.0 + magnitudes[i])/60.0) * halfBandHeight + minEllipseRadius);
             ellipses[i].setFill(Color.hsb(startHue - (magnitudes[i] * -6.0), 1.0, 1.0, 1.0));
         }
-        Double hue = ((60.0 + magnitudes[0])/60.0) * 360;
-        hue = Math.floor(hue);
+        
         
         //this makes the background go purple when bass hits
         //menu.setStyle("-fx-background-color: hsb(" + hue + ", 75%, " + hue + "%)" );

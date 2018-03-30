@@ -25,8 +25,8 @@ public class Vector80sViz implements Visualizer{
     private final Double bandHeightPercentage = 1.0;
     private final Double minRectHeight = 10.0;  // 10.0
     
-    private Double height = 630.0;
-    private Double width = 1400.0;
+    private Double height;
+    private Double width;
     
     private Double bandWidth = 0.0;
     private Double bandHeight = 0.0;
@@ -50,10 +50,10 @@ public class Vector80sViz implements Visualizer{
         this.vizPane = vizPane;
         this.menu = menu;
                 
-        /*
+        
         height = vizPane.getHeight();
         width = vizPane.getWidth();
-        */
+        
         bandWidth = width / numBands;
         bandHeight = height * bandHeightPercentage;
         halfBandHeight = bandHeight / 2;

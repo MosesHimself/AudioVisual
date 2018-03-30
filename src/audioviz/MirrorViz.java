@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class MirrorViz implements Visualizer{
 
-    private final String name = "MirrorViz";
+    private final String name = "MirrorVizFYTB";
     
     private Integer numBands;
     private AnchorPane vizPane;
@@ -26,8 +26,8 @@ public class MirrorViz implements Visualizer{
     private final Double bandHeightPercentage = 1.0;
     private final Double minRectHeight = 10.0;  // 10.0
     
-    private Double height = 630.0;
-    private Double width = 1400.0;
+    private Double height;
+    private Double width;
     
     private Double bandWidth = 0.0;
     private Double bandHeight = 0.0;
@@ -55,10 +55,10 @@ public class MirrorViz implements Visualizer{
         this.numBands = numBands;
         this.vizPane = vizPane;
         this.menu = menu;
-        /*
+        
         height = vizPane.getHeight();
         width = vizPane.getWidth();
-        */
+        
         bandWidth = width / numBands;
         bandHeight = height * bandHeightPercentage;
         halfBandHeight = bandHeight / 2;
@@ -122,17 +122,17 @@ public class MirrorViz implements Visualizer{
         Integer num = min(shapes.length, magnitudes.length);
         
         for (int i = 0; i < num; i++) {
-            //shapes2[numBands - 1 - i].setHeight(shapes2[numBands - 1 - i].getHeight() - 15);
-            //if(((60.0 + magnitudes[numBands - 1 - i])/60.0) * 500 + 10 > shapes2[numBands - 1 - i].getHeight())  {
+            shapes2[numBands - 1 - i].setHeight(shapes2[numBands - 1 - i].getHeight() - 15);
+            if(((60.0 + magnitudes[i])/60.0) * 500 + 10 > shapes2[numBands - 1 - i].getHeight())  {
                 shapes2[numBands - 1 - i].setHeight( ((60.0 + magnitudes[i])/60.0) * 500 + 10);
-            //}
+            }
             //shapes2[numBands - 1 - i].setY(shapes[numBands - 1 - i].getHeight());
             shapes2[numBands - 1 - i].setFill(Color.hsb(startHue - (magnitudes[i] * -6.0), 1.0, 1.0, 1.0));
                 
-            //shapes[i].setHeight(shapes[i].getHeight() - 15);
-            //if(((60.0 + magnitudes[i])/60.0) * 500 + 10 > shapes[i].getHeight())  {
+            shapes[i].setHeight(shapes[i].getHeight() - 15);
+            if(((60.0 + magnitudes[i])/60.0) * 500 + 10 > shapes[i].getHeight())  {
                 shapes[i].setHeight( ((60.0 + magnitudes[i])/60.0) * 500 + 10);
-            //}
+            }
             shapes[i].setY(height - shapes[i].getHeight());
             shapes[i].setFill(Color.hsb(startHue - (magnitudes[i] * -6.0), 1.0, 1.0, 1.0));
         }

@@ -36,8 +36,8 @@ public class Viz3D implements Visualizer{
     private Integer numShapes;
     private AnchorPane vizPane;
     
-    private final Double height = 630.0;
-    private final Double width = 1400.0;
+    private Double height;
+    private Double width;
     
     private double shapeHeight = 20, shapeWidth = 20, shapeDepth = 20;
         
@@ -62,10 +62,10 @@ public class Viz3D implements Visualizer{
         this.vizPane = vizPane;
         
         
-        /*
+        
         height = vizPane.getHeight();
         width = vizPane.getWidth();
-        */
+        
         
         clip = new Rectangle(width, height);
         clip.setLayoutX(0);
@@ -117,6 +117,7 @@ public class Viz3D implements Visualizer{
             */
             y = height/2;
             x = shapeWidth * i + 5 + widthOffset;
+            x = shapeWidth * i + 5;
             
            
             shapes[i].relocate(x, y);
@@ -155,7 +156,7 @@ public class Viz3D implements Visualizer{
     @Override
     public void update(double timestamp, double duration, float[] magnitudes, float[] phases) {
        
-        vizPane.setClip(null);
+        //vizPane.setClip(null);
         
         timer++;
         
@@ -199,7 +200,7 @@ public class Viz3D implements Visualizer{
 
         }
         
-        vizPane.setClip(clip);
+        //vizPane.setClip(clip);
 
     }
     
